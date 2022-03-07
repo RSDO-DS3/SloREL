@@ -25,10 +25,12 @@ You can also run it by building the docker image with command
 
  in the root of the project and then running the image with
  
- ```docker run --rm -it --name bert_relation_extraction \
+ ```
+ docker run --rm -it --name bert_relation_extraction \
         --mount type=bind,source="$(pwd)"/BERT_data,target=/BERT_data,ro \
         -p:8000:8000 \
-        bert_relation_extraction```
+        bert_relation_extraction
+  ```
  
  
  ## Run locally
