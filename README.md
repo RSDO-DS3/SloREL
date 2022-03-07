@@ -4,7 +4,7 @@ Fastapi relation extraction service in docker which uses BERT embeddings.
 ---
 
 In this repository contains model for relation extraction in the Slovenian language. Repository for the method which was used for training the model
-can be found on https://github.com/monologg/R-BERT. We used [CroSloEngual](https://huggingface.co/EMBEDDIA/crosloengual-bert) BERT model to fine-tune the
+can be found on https://github.com/monologg/R-BERT. We used the [CroSloEngual](https://huggingface.co/EMBEDDIA/crosloengual-bert) BERT model to fine-tune the
 model for our task.
 
 ## Project structure
