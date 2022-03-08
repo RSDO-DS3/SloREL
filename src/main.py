@@ -30,6 +30,6 @@ async def find_relations(text: str):
 
 
 @app.get("/find_relations", response_model=List[MarkedRelation])
-async def find_relations2(text: str):
+async def find_relations2(text: str= "Slovenija je članica EU."):
     call_id = uuid4() # used to differentiate different calls in logs
     return predict(mark_entities_in_text(text, call_id), call_id)
