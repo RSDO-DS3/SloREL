@@ -64,5 +64,5 @@ Examples for these files can be found in the `BERT_data.zip` file
 `src/change mark_entities_in_text.py` and perhaps dependencies in `requirements.txt`.
 
 
-**Note** This project uses transformers.AutoTokenizer.from_pretrained function for BERT tokenization. If you use a BERT model with different recommended tokenization
+**Note** This project uses `transformers.AutoTokenizer.from_pretrained` function for BERT tokenization. If you use a BERT model with different recommended tokenization
 method you can change it in the `load_auto_tokenizer` function in `src/utils.py`.
