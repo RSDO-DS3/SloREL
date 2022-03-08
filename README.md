@@ -3,7 +3,7 @@ Fastapi relation extraction service in docker which uses BERT embeddings.
 
 ---
 
-In this repository contains model for relation extraction in the Slovenian language. Repository for the method which was used for training the model
+This repository contains model for relation extraction in the Slovenian language. Repository for the method which was used for training the model
 can be found on https://github.com/monologg/R-BERT. We used the [CroSloEngual](https://huggingface.co/EMBEDDIA/crosloengual-bert) BERT model to fine-tune the
 model for our task.
 
@@ -15,9 +15,9 @@ model for our task.
 
 ## Run with docker
 
-First we need to extract the folder contained in BERT_data.zip into the root of this project.
+First, we need to extract the folder contained in BERT_data.zip into the root of this project.
 
-This project can be run with docker-compose with command `docker-compose up` in the root of the project.
+This project can be run with docker-compose with the command `docker-compose up` in the root of the project.
 
 You can also run it by building the docker image with command 
 
@@ -35,17 +35,17 @@ You can also run it by building the docker image with command
  
  ## Run locally
  
- To run this project we recomend python 3.8.
+ To run this project we recommend  python 3.8.
  
- First we need to extract the folder contained in BERT_data.zip into the folder `src`.
+ First, we need to extract the folder contained in BERT_data.zip into the folder `src`.
  
- To install dependecies run `pip install -r requirements.txt -f https://download.pytorch.org/whl/cpu/torch_stable.html` in the root folder of this project.
+ To install dependencies run `pip install -r requirements.txt -f https://download.pytorch.org/whl/cpu/torch_stable.html` in the root folder of this project.
  
  Run `uvicorn main:app --host 0.0.0.0 --port 8000` in the folder `src` to run the aplication on http://0.0.0.0:8000.
  
  ## Use
  
- Rest API is is provided by FastAPI/uvicorn.
+ Rest API is provided by FastAPI/uvicorn.
  
  After starting up the API, the OpenAPI/Swagger documentation will become accessible at http://localhost:8000/docs and http://localhost:8000/openapi.json.
  
@@ -66,7 +66,7 @@ Examples for these files can be found in the `BERT_data.zip` file
 `src/change mark_entities_in_text.py` and perhaps dependencies in `requirements.txt`.
 
 
-**Note** This project uses `transformers.AutoTokenizer.from_pretrained` function for BERT tokenization. If you use a BERT model with different recommended tokenization
+**Note** This project uses `transformers.AutoTokenizer.from_pretrained` function for BERT tokenization. If you use a BERT model with a different recommended tokenization
 method you can change it in the `load_auto_tokenizer` function in `src/utils.py`.
 
 **Note** Relations in `properties-with-labels.txt` should have the same order as in `labels.txt` in project [R-BERT](https://github.com/monologg/R-BERT)
