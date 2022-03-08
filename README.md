@@ -66,3 +66,6 @@ Examples for these files can be found in the `BERT_data.zip` file
 
 **Note** This project uses `transformers.AutoTokenizer.from_pretrained` function for BERT tokenization. If you use a BERT model with different recommended tokenization
 method you can change it in the `load_auto_tokenizer` function in `src/utils.py`.
+
+**Note** Relations in `properties-with-labels.txt` should have the same order as in `labels.txt` in project [R-BERT](https://github.com/monologg/R-BERT)
+ when you fine-tuned BERT model.
