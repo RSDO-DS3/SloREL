@@ -4,7 +4,7 @@ COPY requirements.txt .
 
 RUN pip3 install -r requirements.txt -f https://download.pytorch.org/whl/cpu/torch_stable.html
 
-COPY project .
+COPY src .
 
 EXPOSE 8000
 

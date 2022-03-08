@@ -9,7 +9,7 @@ model for our task.
 
 ## Project structure
 
-- `project/` contains the script for predicting the relations and contains the source code of our work. fastapi service.
+- `src/` contains the script for predicting the relations and contains the source code of our work. fastapi service.
 - `BERT_data.zip` contains our fine-tuned BERT model.
 
 
@@ -37,11 +37,11 @@ You can also run it by building the docker image with command
  
  To run this project we recomend python 3.8.
  
- First we need to extract the folder contained in BERT_data.zip into the project folder.
+ First we need to extract the folder contained in BERT_data.zip into the folder `src`.
  
  To install dependecies run `pip install -r requirements.txt -f https://download.pytorch.org/whl/cpu/torch_stable.html` in the root folder of this project.
  
- Run `uvicorn", "main:app --host 0.0.0.0 --port 8000` in the project folder to run the aplication on http://0.0.0.0:8000.
+ Run `uvicorn", "main:app --host 0.0.0.0 --port 8000` in the folder `src` to run the aplication on http://0.0.0.0:8000.
  
  ## Use
  
@@ -50,6 +50,19 @@ You can also run it by building the docker image with command
  After starting up the API, the OpenAPI/Swagger documentation will become accessible at http://0.0.0.0:8000/docs and http://0.0.0.0:8000/openapi.json.
  
  For extracting the relations in a sentence you can send get request to http://0.0.0.0:8000/find_relations/{text} where {text} represents the sentence.
-
-
  
+ 
+ ## Use with your own BERT model
+
+This service can be used with BERT models fine-tuned by method [R-BERT](https://github.com/monologg/R-BERT). To use this service with your model
+you need to create your own `BERT_data` folder in the root of this project for docker use or in the folder `src` for local use. This folder
+needs to have `pytorch_model.bin`, `training_args.bin` and `config.json` that you get from fine-tuning the BERT model with [R-BERT](https://github.com/monologg/R-BERT).
+You also need to add the `vocab.txt` file from the BERT model and `properties-with-labels.txt` which has relation labels and descriptions. 
+Examples for these files can be found in the `BERT_data.zip` file
+
+**Note** This project uses NER tagger for the Slovenian language. If you want to use this project for another language you will need to change 
+`src/change mark_entities_in_text.py` and perhaps dependencies in `requirements.txt`.
+
+
+**Note** This project uses transformers.AutoTokenizer.from_pretrained function for BERT tokenization. If you use a BERT model with different recommended tokenization
+method you can change it in the `load_auto_tokenizer` function in `src/utils.py`.
