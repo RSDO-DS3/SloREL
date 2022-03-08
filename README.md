@@ -41,7 +41,7 @@ You can also run it by building the docker image with command
  
  To install dependecies run `pip install -r requirements.txt -f https://download.pytorch.org/whl/cpu/torch_stable.html` in the root folder of this project.
  
- Run `uvicorn", "main:app --host 0.0.0.0 --port 8000` in the folder `src` to run the aplication on http://0.0.0.0:8000.
+ Run `uvicorn main:app --host 0.0.0.0 --port 8000` in the folder `src` to run the aplication on http://0.0.0.0:8000.
  
  ## Use
  
