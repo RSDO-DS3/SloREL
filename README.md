@@ -47,9 +47,11 @@ You can also run it by building the docker image with command
  
  Rest API is is provided by FastAPI/uvicorn.
  
- After starting up the API, the OpenAPI/Swagger documentation will become accessible at http://0.0.0.0:8000/docs and http://0.0.0.0:8000/openapi.json.
+ After starting up the API, the OpenAPI/Swagger documentation will become accessible at http://localhost:8000/docs and http://localhost:8000/openapi.json.
  
- For extracting the relations in a sentence you can send get request to http://0.0.0.0:8000/find_relations/{text} where {text} represents the sentence.
+ For extracting the relations in a sentence you can send get request to http://localhost:8000/find_relations/{text} where {text} represents the sentence.
+ You can also send a get request to the http://localhost:8000/find_relations and add parameter `text` which contains the sentence. The return form for those
+ two get requests can be found on http://localhost:8000/docs when the service is running.
  
  
  ## Use with your own BERT model

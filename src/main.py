@@ -27,3 +27,10 @@ class MarkedRelation(BaseModel):
 async def find_relations(text: str):
     call_id = uuid4() # used to differentiate different calls in logs
     return predict(mark_entities_in_text(text, call_id), call_id)
+
+
+
+@app.get("/find_relations", response_model=List[MarkedRelation])
+async def find_relations2(text: str):
+    call_id = uuid4() # used to differentiate different calls in logs
+    return predict(mark_entities_in_text(text, call_id), call_id)
