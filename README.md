@@ -1,4 +1,4 @@
-# relation_extraction_BERT_gpu
+# relation_extraction_BERT
 fastapi relation extraction service in docker which uses BERT embeddings and  GPU acceleration
 
 ---
