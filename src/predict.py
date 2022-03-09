@@ -41,7 +41,10 @@ def load_model(model_dir, args, device):
 
 model_dir = "./BERT_data"
 args = get_args(model_dir)
-device = "cpu" #get_device(pred_config)
+if os.getenv("useGPU", False):
+    device = "cuda"
+else:
+    device = "cpu"
 model = load_model(model_dir, args, device)
 tokenizer = load_auto_tokenizer(model_dir)
 label_lst = get_label(args)

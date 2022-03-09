@@ -2,11 +2,11 @@ from json import dumps
 import logging
 import classla
 from copy import deepcopy
-
+from os import getenv
 logging.basicConfig()
 
 classla.download('sl')
-nlp1 = classla.Pipeline('sl', processors='tokenize,pos,ner', use_gpu=False)
+nlp1 = classla.Pipeline('sl', processors='tokenize,pos,ner', use_gpu=getenv("useGPU", False))
 
 def mark_entities_in_text(text, call_id):
     marked_doc = nlp1(text).to_dict()

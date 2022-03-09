@@ -1,9 +1,9 @@
-# relation_extraction_BERT_cpu
-Fastapi relation extraction service in docker which uses BERT embeddings.
+# relation_extraction_BERT_gpu
+fastapi relation extraction service in docker which uses BERT embeddings and  GPU acceleration
 
 ---
 
-This repository contains model for relation extraction in the Slovenian language. Repository for the method which was used for training the model
+This repository contains a model for relation extraction in the Slovenian language. Repository for the method which was used for training the model
 can be found on https://github.com/monologg/R-BERT. We used the [CroSloEngual](https://huggingface.co/EMBEDDIA/crosloengual-bert) BERT model to fine-tune the
 model for our task.
 
@@ -15,24 +15,44 @@ model for our task.
 
 ## Run with docker
 
-First, we need to extract the folder contained in BERT_data.zip into the root of this project.
+To run this service we first need to extract the folder contained in BERT_data.zip into the root of this project.
 
-This project can be run with docker-compose with the command `docker-compose up` in the root of the project.
+#### Run GPU accelerated container 
 
-You can also run it by building the docker image with command 
+ To run GPU accelerated docker containers you need to have an Nvidia GPU and [CUDA for WSL](https://docs.nvidia.com/cuda/wsl-user-guide/index.html) on Windows 10 or 11
+ or [The NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) for Linux. 
 
-`docker build . -t bert_relation_extraction`
+ To build the docker image run:
 
- in the root of the project and then running the image with
+ `docker build . -t bert_relation_extraction_gpu -f DockerfileGPU`
+
+ To run the image in a GPU accelerated container use:
  
+ ```
+ docker run --rm -it --name bert_relation_extraction \
+        --gpus=all \
+        -e useGPU=True \
+        --mount type=bind,source="$(pwd)"/BERT_data,target=/BERT_data,ro \
+        -p:8000:8000 \
+        bert_relation_extraction_gpu
+  ```
+ 
+#### Run normal container 
+
+
+ To build the docker image run:
+
+ `docker build . -t bert_relation_extraction -f Dockerfile`
+
+ To run the image in a normal container use:
+
  ```
  docker run --rm -it --name bert_relation_extraction \
         --mount type=bind,source="$(pwd)"/BERT_data,target=/BERT_data,ro \
         -p:8000:8000 \
         bert_relation_extraction
   ```
- 
- 
+
  ## Run locally
  
  To run this project we recommend  python 3.8.
@@ -42,6 +62,13 @@ You can also run it by building the docker image with command
  To install dependencies run `pip install -r requirements.txt -f https://download.pytorch.org/whl/cpu/torch_stable.html` in the root folder of this project.
  
  Run `uvicorn main:app --host 0.0.0.0 --port 8000` in the folder `src` to run the aplication on http://0.0.0.0:8000.
+
+ #### Run with Nvidia CUDA
+
+ For GPU acceleration you need to have the [CUDA toolkit](https://developer.nvidia.com/cuda-toolkit).
+
+ To enable the GPU acceleration you will need to manually change the `use_gpu` parameter in `src/mark_entities.py` `classla.Pipeline` to `True`
+ and string `device` in `src/predict.py` to `"cuda"`.
  
  ## Use
  
