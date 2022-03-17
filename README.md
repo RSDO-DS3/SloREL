@@ -1,11 +1,12 @@
-# relation_extraction_BERT
-fastapi relation extraction service in docker which uses BERT embeddings and  GPU acceleration
+# SloREL
+
+V tem repozitoriju se nahaja rezultat aktivnosti A3.2 - R3.2.3 Orodje za ekstrakcijo povezav, ki je nastalo v okviru projekta Razvoj slovenščine v digitalnem okolju.
 
 ---
 
-This repository contains a model for relation extraction in the Slovenian language. Repository for the method which was used for training the model
-can be found on https://github.com/monologg/R-BERT. We used the [CroSloEngual](https://huggingface.co/EMBEDDIA/crosloengual-bert) BERT model to fine-tune the
-model for our task.
+This repository contains a model for relation extraction in the Slovenian language and a docker service which uses this model to extract relations. Repository 
+for the method which was used for training the model can be found on https://github.com/monologg/R-BERT. We used the
+[CroSloEngual](https://huggingface.co/EMBEDDIA/crosloengual-bert) BERT model to fine-tune the model for our task.
 
 ## Project structure
 
@@ -98,3 +99,11 @@ method you can change it in the `load_auto_tokenizer` function in `src/utils.py`
 
 **Note** Relations in `properties-with-labels.txt` should have the same order as in `labels.txt` in project [R-BERT](https://github.com/monologg/R-BERT)
  when you fine-tuned BERT model.
+ 
+ ---
+
+> Operacijo Razvoj slovenščine v digitalnem okolju sofinancirata Republika Slovenija in Evropska unija iz Evropskega sklada za regionalni razvoj. Operacija se izvaja v okviru Operativnega programa za izvajanje evropske kohezijske politike v obdobju 2014-2020.
+
+![](Logo_EKP_sklad_za_regionalni_razvoj_SLO_slogan.jpg)
+
+
