@@ -1,7 +1,5 @@
 FROM nvidia/cuda:10.1-base-ubuntu18.04
 
-ARG DEBIAN_FRONTEND=noninteractive
-
 RUN apt update \
   && apt install python3.8 -y \
   && apt install python3-distutils -y \
@@ -13,10 +11,11 @@ RUN apt update \
   && rm get-pip.py
 
 
+
 COPY requirements.txt src/get_classla_models.py .
 
 RUN pip3 install -r requirements.txt -f https://download.pytorch.org/whl/cu101/torch_stable.html \
-	&& python3.8 get_classla_models.py
+	&& python3.8 get_classla_models.py 
 
 COPY src .
 

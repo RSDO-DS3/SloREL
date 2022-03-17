@@ -197,20 +197,13 @@ def predict(sentence_data, call_id):
     # Write to output file
     results = []
     for pred_out, pred, classla_data in zip(preds_out, preds, sentence_data):
-       results.append({"sentence": classla_data["sentence_text"], 
-                       "entity1": {
-                            "text": classla_data["entity1_text"],
-                            "sentence_position": classla_data["entity1_sentence_position"]
-                       },
-                       "entity2": {
-                            "text": classla_data["entity2_text"],
-                            "sentence_position": classla_data["entity2_sentence_position"]
-                       },
-                       "relation": {
-                            "WikiData_tag": str(label_lst[pred_out]), 
-                            "description": relation_descriptions[str(label_lst[pred_out])]
-                       },
-                       "score": float(pred[pred_out])})
-    
+       if str(label_lst[pred_out]) != "P0":
+           score = (min(16.7, max(2.0, pred[pred_out])) - 2.0) / 0.147  # normalization of score
+           results.append({"subject_id": classla_data["entity1_id"],
+                           "object_id": classla_data["entity2_id"],
+                           "wikidata_tag": str(label_lst[pred_out]), 
+                           "description": relation_descriptions[str(label_lst[pred_out])],
+                            "score": score
+                           })    
     logging.info(f"call {call_id} Prediction Done!")
     return results
