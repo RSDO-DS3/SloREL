@@ -7,6 +7,8 @@ logging.basicConfig()
 
 classla.download('sl')
 nlp = classla.Pipeline('sl', processors='tokenize,pos,ner', use_gpu=getenv("useGPU", False))
+
+# tokens with XPOS that starts with these letters will be used as mentions
 MENTION_MSD = {"N", "R", "P"} 
 
 def mark_entities_in_text(text, only_ne_as_mentions, call_id):
@@ -16,15 +18,17 @@ def mark_entities_in_text(text, only_ne_as_mentions, call_id):
     logging.info(f"call: {call_id} classla output :\n{dumps(marked_doc, indent = 4)}")
     input_for_prediction = []
     for sentence in marked_doc:
-        mention_set = []
-        tokens = []
-        last_msd = ""
-        token_pos = 0
+        mention_set = []  # list of mentions
+        tokens = [] # list of tokens
+        last_msd = "" # msd of last mention "" if its a NE
+        token_pos = 0 # position of current token in sentence
         sentence_text = sentence[1][sentence[1].find("# text = ") + 9:].strip()
         for index, word in enumerate(sentence[0]):
+            
+            # get all mentions in a sentence
             tokens.append(word["text"])
             if sentence_text.find(word["text"], token_pos) != -1:
-                token_pos = sentence_text.find(word["text"], token_pos)
+                token_pos = sentence_text.find(word["text"], token_pos) #update current position of token
             if not "misc" in word or "SpaceAfter=No" not in word["misc"]:
                 tokens[-1] += " "
             if word["ner"][0] == "B":
@@ -57,6 +61,8 @@ def mark_entities_in_text(text, only_ne_as_mentions, call_id):
                     last_msd = word["xpos"][0]
             
         input_for_prediction_sentence = []
+        
+        # create input for BERT model for each relation candidate
         for i in range(len(mention_set)):
             mention_set[i]["id"] = i + 1
             for j in range(i+1, len(mention_set)):

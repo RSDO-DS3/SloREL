@@ -194,7 +194,7 @@ def predict(sentence_data, treshold, call_id):
 
     preds_out = np.argmax(preds, axis=1)
 
-    # Write to output file
+    # Save results
     results = []
     for pred_out, pred, classla_data in zip(preds_out, preds, sentence_data):
        if str(label_lst[pred_out]) != "P0":
