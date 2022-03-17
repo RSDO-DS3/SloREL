@@ -9,7 +9,7 @@ classla.download('sl')
 nlp = classla.Pipeline('sl', processors='tokenize,pos,ner', use_gpu=getenv("useGPU", False))
 MENTION_MSD = {"N", "R", "P"} 
 
-def mark_entities_in_text(text, call_id):
+def mark_entities_in_text(text, only_ne_as_mentions, call_id):
     global nlp
     global MENTION_MSD
     marked_doc = nlp(text).to_dict()
@@ -40,11 +40,11 @@ def mark_entities_in_text(text, call_id):
             elif word["ner"][0] == "I":
                 if len(mention_set) > 0:
                     mention_set[-1]["tokenpositions"].append(index)
-                    mention_set[-1]["end"] += token_pos + len(word["text"])
-            elif word["xpos"][0] in MENTION_MSD:
+                    mention_set[-1]["end"] = token_pos + len(word["text"])
+            elif not only_ne_as_mentions and word["xpos"][0] in MENTION_MSD:
                 if last_msd == word["xpos"][0]:
                     mention_set[-1]["tokenpositions"].append(index)
-                    mention_set[-1]["end"] += token_pos + len(word["text"])
+                    mention_set[-1]["end"] = token_pos + len(word["text"])
                 else:
                     mention_set.append({
                         "tokenpositions": [
