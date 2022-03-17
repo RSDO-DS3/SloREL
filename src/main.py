@@ -45,7 +45,7 @@ def get_relations_from_text(text, relationship_threshold, only_ne_as_mentions, c
 @app.post("/predict/rel", response_model=List[MarkedRelation])
 async def find_relations_post(req_body: PredictRelationRequestBody = Body(
             example=PredictRelationRequestBody(
-                relationship_threshold=60.0,
+                relationship_threshold=0.0,
                 only_ne_as_mentions=False,
                 text='Slovenija je članica EU.'
             ),
@@ -57,6 +57,6 @@ async def find_relations_post(req_body: PredictRelationRequestBody = Body(
 
 
 @app.get("/predict/rel", response_model=List[MarkedRelation])
-async def find_relations_get(text: str= "Slovenija je članica EU.", relationship_threshold: float=60.0, only_ne_as_mentions: bool=False):
+async def find_relations_get(relationship_threshold: float=0.0, text: str= "Slovenija je članica EU.", only_ne_as_mentions: bool=False):
     call_id = uuid4() # used to differentiate different calls in logs
     return get_relations_from_text(text, relationship_threshold, only_ne_as_mentions, call_id)

@@ -198,7 +198,7 @@ def predict(sentence_data, treshold, call_id):
     results = []
     for pred_out, pred, classla_data in zip(preds_out, preds, sentence_data):
        if str(label_lst[pred_out]) != "P0":
-           score = (min(16.7, max(2.0, pred[pred_out])) - 2.0) / 0.147  # normalization of score
+           score = (min(16.7, max(2.0, pred[pred_out])) - 2.0) / 14.7  # normalization of score
            if score >= treshold:
                results.append({"subject_id": classla_data["entity1_id"],
                                "object_id": classla_data["entity2_id"],

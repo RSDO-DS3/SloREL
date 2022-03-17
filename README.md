@@ -77,9 +77,20 @@ To run this service we first need to extract the folder contained in BERT_data.z
  
  After starting up the API, the OpenAPI/Swagger documentation will become accessible at http://localhost:8000/docs and http://localhost:8000/openapi.json.
  
- For extracting the relations in a sentence you can send get request to http://localhost:8000/find_relations/{text} where {text} represents the sentence.
- You can also send a get request to the http://localhost:8000/find_relations and add parameter `text` which contains the sentence. The return form for those
- two get requests can be found on http://localhost:8000/docs when the service is running.
+ Service has a GET and POST endpoint at http://localhost:8000/predict/rel. Both endpoints require three parameters. 
+ 
+ - String `text`  Text on which relation extraction will be performed.
+ - Boolean `only_ne_as_mentions` Service will only use mentions in the text which are recognized as named entities if set to true.
+ - Float `relationship_threshold` Each relation prediction has a confidence score between 0.0 and 1.0. This parameter can be used to prune prediction with a score below the threshold.
+ 
+ To test the service, try sending a request with curl:
+ 
+ ```
+ curl -X POST -H 'Content-Type: application/json' \
+	-H 'Accept: application/json' \
+	-d '{"text": "France Prešeren je rojen v Vrbi.",  "only_ne_as_mentions": false,  "relationship_threshold": 0.4}' \
+	'http://localhost:8000/predict/rel'
+```
  
  
  ## Use with your own BERT model
