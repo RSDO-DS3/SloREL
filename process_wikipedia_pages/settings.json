@@ -1,0 +1,46 @@
+{
+  "wikidata_dump_file": "latest-all.json.bz2",
+  "page_folder" : "../pages/",
+  "text_with_entities_folder": "../wikipedia_text/",
+  "text_with_entities_and_relations_folder": "../wikipedia_text_with_relations/",
+  "text_with_entities_and_filtered_relations_folder": "../wikipedia_text_with_filtered_relations/",
+  "add_empty_relations": true,
+  "elasticsearch_dump": "entities.json",
+  "elastic_search_url": "http://localhost:9200",
+  "relation_triplets_folder": "../triplets/",
+  "knowledge_graph_entity_candidates": "entity_candidates.txt",
+  "knowledge_graph_relation_candidates": "relation_candidates.txt",
+  "knowledge_graph": "knowledge_graph.json",
+  "use_filtered_data": true,
+  "bert":{ 
+	"split": {
+		"train": 8,
+		"test": 1,
+		"validation": 1
+	},
+	"train_file": "bert_train_data.tsv",
+	"test_input": "bert_test_input.txt",
+	"test_correct_rel": "bert_test_correct_rel.txt",
+	"validation_file": "bert_validation_data.tsv"
+  },
+  "json":{ 
+	"split": {
+		"train": 8,
+		"test": 1,
+		"validation": 1
+	},
+	"train_file": "train.json",
+	"test_file": "test.json",
+	"validation_file": "validation_data.json"
+  },
+  "entity_context":{ 
+	"split": {
+		"train": 8,
+		"test": 1,
+		"validation": 1
+	},
+	"train_file": "train.txt",
+	"test_file": "test.txt",
+	"validation_file": "valid.txt"
+  }
+}

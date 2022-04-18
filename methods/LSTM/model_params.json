@@ -1,0 +1,15 @@
+{
+  "rnn1_layers": 1,
+  "bidirectional": false,
+  "units1": 256,
+  "dropout1": 0.5,
+  "optimizer": "adam",
+  "window_size": 3,
+  "position_emb": 3,
+  "batch_size": 128,
+  "gpu": true,
+  "property2idx": "resources/property2idx.txt",
+  "property_blacklist": "resources/property_blacklist.txt",
+  "wordembeddings": "../../wiki.sl.vec",
+  "max_sent_len": 36
+}
