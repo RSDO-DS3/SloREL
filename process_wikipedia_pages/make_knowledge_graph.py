@@ -8,7 +8,7 @@ if __name__ == "__main__":
     with open("settings.json", "r") as settings_file:
         settings = json.load(settings_file)
     try:
-        with open(settings["knowledge_graph_candidates"], "r") as file:
+        with open(settings["knowledge_graph_entity_candidates"], "r") as file:
             for line in file:
                 can.add(line.strip())
     except:

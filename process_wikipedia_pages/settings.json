@@ -1,17 +1,17 @@
 {
   "wikidata_dump_file": "latest-all.json.bz2",
+  "elasticsearch_dump": "entities.json",
   "page_folder" : "../pages/",
   "text_with_entities_folder": "../wikipedia_text/",
   "text_with_entities_and_relations_folder": "../wikipedia_text_with_relations/",
   "text_with_entities_and_filtered_relations_folder": "../wikipedia_text_with_filtered_relations/",
-  "add_empty_relations": true,
-  "elasticsearch_dump": "entities.json",
+  "add_empty_relations": false,
   "elastic_search_url": "http://localhost:9200",
   "relation_triplets_folder": "../triplets/",
   "knowledge_graph_entity_candidates": "entity_candidates.txt",
   "knowledge_graph_relation_candidates": "relation_candidates.txt",
   "knowledge_graph": "knowledge_graph.json",
-  "use_filtered_data": true,
+  "use_filtered_data": false,
   "bert":{ 
 	"split": {
 		"train": 8,

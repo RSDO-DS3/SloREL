@@ -12,6 +12,9 @@ for the method which was used for training the model can be found on https://git
 
 - `src/` contains the script for predicting the relations and contains the source code of our work. fastapi service.
 - `BERT_data.zip` contains our fine-tuned BERT model.
+- `methods` contains scripts for training and testing models with three different relation extraction methods.
+- `process_wikipedia_pages` contains scripts for converting HTML pages from Slovenian Wikipedia to text with marked relations and entities.
+
 
 
 ## Run with docker
