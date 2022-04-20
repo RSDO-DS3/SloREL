@@ -21,6 +21,10 @@ for the method which was used for training the model can be found on https://git
 
 To run this service we first need to extract the folder contained in BERT_data.zip into the root of this project.
 
+Service starts when the logger outputs: `INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)`
+
+Docker images require at least 4GB of RAM to be built and run.
+
 #### Run GPU accelerated container 
 
  To run GPU accelerated docker containers you need to have an Nvidia GPU and [CUDA for WSL](https://docs.nvidia.com/cuda/wsl-user-guide/index.html) on Windows 10 or 11
@@ -28,12 +32,13 @@ To run this service we first need to extract the folder contained in BERT_data.z
 
  To build the docker image run:
 
- `docker build . -t bert_relation_extraction_gpu -f DockerfileGPU`
+ `docker buildx build --platform linux/amd64 . -t bert_relation_extraction_gpu -f DockerfileGPU`
 
  To run the image in a GPU accelerated container use:
  
  ```
  docker run --rm -it --name bert_relation_extraction \
+	--platform linux/amd64 \
         --gpus=all \
         -e useGPU=True \
         --mount type=bind,source="$(pwd)"/BERT_data,target=/BERT_data,ro \
@@ -46,12 +51,13 @@ To run this service we first need to extract the folder contained in BERT_data.z
 
  To build the docker image run:
 
- `docker build . -t bert_relation_extraction -f Dockerfile`
+ `docker buildx build --platform linux/amd64 . -t bert_relation_extraction -f Dockerfile`
 
  To run the image in a normal container use:
 
  ```
  docker run --rm -it --name bert_relation_extraction \
+	--platform linux/amd64 \
         --mount type=bind,source="$(pwd)"/BERT_data,target=/BERT_data,ro \
         -p:8000:8000 \
         bert_relation_extraction
@@ -98,9 +104,9 @@ To run this service we first need to extract the folder contained in BERT_data.z
  
  ## Use with your own BERT model
 
-This service can be used with BERT models fine-tuned by method [R-BERT](https://github.com/monologg/R-BERT). To use this service with your model
+This service can be used with BERT models fine-tuned by the method from the `methods\BERT` folder. To use this service with your model
 you need to create your own `BERT_data` folder in the root of this project for docker use or in the folder `src` for local use. This folder
-needs to have `pytorch_model.bin`, `training_args.bin` and `config.json` that you get from fine-tuning the BERT model with [R-BERT](https://github.com/monologg/R-BERT).
+needs to have `pytorch_model.bin`, `training_args.bin` and `config.json` that you get from fine-tuning the BERT model.
 You also need to add the `vocab.txt` file from the BERT model and `properties-with-labels.txt` which has relation labels and descriptions. 
 Examples for these files can be found in the `BERT_data.zip` file
 

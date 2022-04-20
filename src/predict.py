@@ -46,6 +46,8 @@ if os.getenv("useGPU", False):
 else:
     device = "cpu"
 model = load_model(model_dir, args, device)
+
+logging.info("BERT model done with loading")
 tokenizer = load_auto_tokenizer(model_dir)
 label_lst = get_label(args)
 

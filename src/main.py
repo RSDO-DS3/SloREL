@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Body
 from typing import List
 from pydantic import BaseModel
-from predict import predict
 from mark_entities import mark_entities_in_text
+from predict import predict
 from uuid import uuid4
 
 

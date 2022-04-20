@@ -5,7 +5,6 @@ from copy import deepcopy
 from os import getenv
 logging.basicConfig()
 
-classla.download('sl')
 nlp = classla.Pipeline('sl', processors='tokenize,pos,ner', use_gpu=getenv("useGPU", False))
 
 # tokens with XPOS that starts with these letters will be used as mentions
