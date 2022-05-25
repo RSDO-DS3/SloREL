@@ -29,6 +29,8 @@ time to execute and can be stopped and resumed without losing the progress of pa
 
 ## Marking relations
 
+Archive with text with entities and relations from slovenian wikipedia pages is saved in `wikipedia_text_with_relations.zip`.
+
 To mark relations you will first need to download the [WikiData bz2 JSON dump](https://dumps.wikimedia.org/wikidatawiki/entities). You will need to download this dump
 and set `wikidata_dump_file` parameter in `settings.json` to the location of this dump. You will also need to set `relation_triplets_folder` parameter to the folder which will
 contain files with extracted relations. Run `make_relation_triplets.py` to extract these triplets. 
