@@ -51,9 +51,9 @@ def train():
     save_folder = "./trained_models/"
 
     model_params = "model_params.json"
-    word_embeddings = "../../wiki.sl.vec"
-    train_set = "../../process_wikipedia_pages/train_data.json"
-    val_set = "../../process_wikipedia_pages/validation_data.json"
+    word_embeddings = "../../../wiki.sl.vec"
+    train_set = "../../../train_data.json"
+    val_set = "../../../validation_data.json"
 
     use_char_vocab = False
 

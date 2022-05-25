@@ -60,12 +60,12 @@ def test():
     model_name = "RECON"
     data_folder = ""
     save_folder = "./trained_models/"
-    trained_model = "RECON-1.out"
+    trained_model = "RECON-0.out"
 
     model_params = "model_params.json"
-    word_embeddings = "../../wiki.sl.vec"
+    word_embeddings = "../../../wiki.sl.vec"
 
-    test_set = "../../process_wikipedia_pages/test_data.json"
+    test_set = "../../../test_data.json"
 
     gat_embedding_file = None
     gat_relation_embedding_file = None

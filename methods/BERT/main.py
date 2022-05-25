@@ -29,7 +29,7 @@ if __name__ == "__main__":
     parser.add_argument("--task", default="semeval", type=str, help="The name of the task to train")
     parser.add_argument(
         "--data_dir",
-        default="../../process_wikipedia_pages/",
+        default="",
         type=str,
         help="The input data dir. Should contain the .tsv files (or other data files) for the task.",
     )
@@ -95,17 +95,17 @@ if __name__ == "__main__":
         help="Dropout for fully-connected layers",
     )
 
-    parser.add_argument("--logging_steps", type=int, default=1285, help="Log every X updates steps.")
+    parser.add_argument("--logging_steps", type=int, default=7980, help="Log every X updates steps.")
     parser.add_argument(
         "--save_steps",
         type=int,
-        default=1285,
+        default=7980,
         help="Save checkpoint every X updates steps.",
     )
 
     parser.add_argument("--do_train", action="store_true", help="Whether to run training.")
     parser.add_argument("--do_eval", action="store_true", help="Whether to run eval on the test set.")
-    parser.add_argument("--no_cuda", action="store_true", help="Avoid using CUDA when available")
+    parser.add_argument("--no_cuda", action="store_false", help="Avoid using CUDA when available")
     parser.add_argument(
         "--add_sep_token",
         action="store_true",

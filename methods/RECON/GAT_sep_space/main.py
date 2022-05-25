@@ -41,11 +41,11 @@ def parse_args():
     args.add_argument("-data", "--data",
                       default="../entity_context", help="data directory")
     args.add_argument("-e_g", "--epochs_gat", type=int,
-                      default=1, help="Number of epochs")
+                      default=10, help="Number of epochs")
     args.add_argument("-e_e", "--epochs_ent_emb", type=int,
-                      default=1, help="Number of epochs")
+                      default=10, help="Number of epochs")
     args.add_argument("-e_c", "--epochs_conv", type=int,
-                      default=1, help="Number of epochs")
+                      default=4, help="Number of epochs")
     args.add_argument("-w_gat", "--weight_decay_gat", type=float,
                       default=5e-6, help="L2 reglarization for gat")
     args.add_argument("-w_conv", "--weight_decay_conv", type=float,
@@ -93,7 +93,7 @@ def parse_args():
     
     # arguments for the entity embedding network
     args.add_argument("-ef", "--embedding_file", type=str,
-                      default='../../../wiki.sl.vec', help="The word2vec embedding file for initialising the entity embeddings")
+                      default='../../../../wiki.sl.vec', help="The word2vec embedding file for initialising the entity embeddings")
     args.add_argument("-sv", "--save_vocab", type=str,
                       default='./vocab.pkl', help="The path of the file in which to save the vocab")
     args.add_argument("-ctx_file", "--entities_context_data_file", type=str,

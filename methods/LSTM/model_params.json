@@ -10,6 +10,6 @@
   "gpu": true,
   "property2idx": "resources/property2idx.txt",
   "property_blacklist": "resources/property_blacklist.txt",
-  "wordembeddings": "../../wiki.sl.vec",
+  "wordembeddings": "../../../wiki.sl.vec",
   "max_sent_len": 36
 }
